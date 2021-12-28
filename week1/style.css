@@ -89,6 +89,7 @@ body{margin:0px;}
         position: absolute;
         top: 30px;
         right:15px;
+        display: none;
     }
     .showMenu{
         display: block;
