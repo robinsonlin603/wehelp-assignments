@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8"/>
+        <title>week2</title>
+        <script type="text/javascript">
+            /*函式與流程控制*/
+            function calculate(min,max){
+                let sum=0;
+                let n=min;
+                while(n<=max){
+                    sum=sum+n;
+                    n++;
+                }
+                console.log(sum);
+            }
+            calculate(1,3);
+            calculate(4,8);
+            /*物件與陣列*/
+            function avg(data){
+                workers=data["employees"]
+                let sum=0
+                let n=0
+                while(n<data["count"]){
+                    sum=sum+Number(workers[n]["salary"])
+                    n++
+                }
+                console.log(sum/data["count"])
+            }
+            avg({
+                    "count":3,
+                    "employees":[
+                        {
+                            "name":"Jhon",
+                            "salary":"30000"
+                        },
+                        {
+                            "name":"Bob",
+                            "salary":"60000"
+                        },
+                        {
+                            "name":"Jenny",
+                            "salary":"50000"            
+                        }
+                    ]
+            });
+            /*演算法*/
+            function maxProduct(nums){
+                let n=nums.length;
+                let max=nums[0]*nums[1];
+                let i=0;
+                while (i<n){
+                    for(let j=0;j<n;j++){
+                        if(nums[i]*nums[j]>max&&i!=j){
+                            max=nums[i]*nums[j]
+                        }
+                    }
+                    i++;
+                }
+                console.log(max);
+            }
+            maxProduct([5,20,2,6])
+            maxProduct([10,-20,0,3])
+            maxProduct([-1,2])
+            maxProduct([-1,0,2])
+            /*演算法*/
+            function twoSum(nums,target){
+                let n=nums.length;
+                let i=0;
+                while (i<n){
+                    for (let j=0;j<n;j++){
+                        if ((nums[i]+nums[j])===target){
+                            return [i,j]
+                        }
+                    }
+                    i++;
+                }
+            }
+            result=twoSum([2,11,7,15],9);
+            console.log(result);
+            /*演算法*/
+            function maxZeros(nums){
+                let temp_max=0;
+                let max=0;
+                let n=nums.length;
+                for(let i=0;i<n;i++){
+                    if (nums[i]===1){
+                        temp_max=0;
+                        continue;
+                    }
+                    temp_max+=1
+                    if (temp_max>max){
+                        max=temp_max;
+                    }
+                }
+                console.log(max);
+            }
+            maxZeros([0,1,0,0]);
+            maxZeros([1,0,0,0,0,1,0,1,0,0]);
+            maxZeros([1,1,1,1,1]);
+            maxZeros([0,0,0,1,1]);   
+        </script>
+    </head>
+</html>
