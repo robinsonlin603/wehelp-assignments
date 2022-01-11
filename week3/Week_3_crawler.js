@@ -31,7 +31,7 @@ request.onload=function(){
 }
 request.open("get","https://padax.github.io/taipei-day-trip-resources/taipei-attractions-assignment.json")
 request.send();
-let n=8;
+let n=0;
 function init(){
     let btn=document.getElementById("btn");
     let handler2=function(){
