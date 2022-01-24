@@ -31,14 +31,17 @@ UPDATE `member` SET `name`='test2' WHERE `username`='test';
 要求四
 1.共幾筆資料
 SELECT COUNT(*) FROM `member`; 
+
 ![要求4-1](https://user-images.githubusercontent.com/93252094/150738380-4a1bafa5-b036-4ef7-872b-39c52163b740.jpeg)
 
 2.follower_count 總和
 SELECT SUM(`follower_count`) FROM `member`;
+
 ![要求4-2](https://user-images.githubusercontent.com/93252094/150738385-4bf0a1b7-8904-440f-b45e-63b722d15fd5.jpeg)
 
 3.follower_avg 平均
 SELECT AVG(`follower_count`) FROM `member`;
+
 ![要求4-3](https://user-images.githubusercontent.com/93252094/150738550-c38d500a-5d5e-431e-9cca-bd4aef486664.jpeg)
 
 要求五
