@@ -19,9 +19,10 @@ SELECT * FROM `member` ORDER BY `time` DESC ;
 
 3.取 第二到四 共三筆資料
 
-SELECT * FROM `member` ORDER BY `time` DESC LIMIT 2,4;
+SELECT * FROM `member` ORDER BY `time` DESC LIMIT 1,3;
 
-![要求3-3](https://user-images.githubusercontent.com/93252094/150737894-25184c1b-4825-484c-8f68-6985cc4e3749.jpeg)
+![要求3-3](https://user-images.githubusercontent.com/93252094/150907619-951220b7-10a7-4b61-8045-317c03f35e12.jpeg)
+
 
 4.取test的會員資料
 
