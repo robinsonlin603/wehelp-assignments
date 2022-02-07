@@ -2,7 +2,6 @@ from flask import *
 from member.view import member_blueprints
 from tasks.view import tasks_blueprints
 
-from flask import *
 app=Flask(
     __name__,
     static_folder="static",
