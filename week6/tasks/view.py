@@ -48,7 +48,9 @@ def signin():
     result=cursor.fetchone()
     if result==None:
         return redirect("/error?msg=帳號、或密碼輸入錯誤")
-    session["name"]=result[0]
+    cursor.execute("SELECT `name` FROM `member` WHERE `email`=%s AND `password`=%s",result)
+    name=cursor.fetchone()
+    session["name"]=name[0]
     return redirect("/member")
 
 # 登出路由
