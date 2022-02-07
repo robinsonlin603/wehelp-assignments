@@ -1,14 +1,5 @@
-import mysql.connector
 from flask import *
-connection = mysql.connector.connect(
-    host="localhost",
-    port="3306",
-    user="root",
-    password="goodtime123",
-    database="member_system"
-)
-cursor = connection.cursor()
-
+import mysql.connector
 tasks_blueprints=Blueprint(
     "tasks",
     __name__,
@@ -24,6 +15,14 @@ def error():
 # 註冊路由
 @tasks_blueprints.route("/signup",methods=["POST"])
 def signup():
+    connection = mysql.connector.connect(
+    host="localhost",
+    port="3306",
+    user="root",
+    password="goodtime123",
+    database="member_system"
+    )
+    cursor = connection.cursor()
     name=request.form["name"]
     email=request.form["email"]
     password=request.form["password"]
@@ -38,19 +37,23 @@ def signup():
 # 登入路由
 @tasks_blueprints.route("/signin",methods=["POST"])
 def signin():
-    test_account="test"
-    test_password="test"
+    connection = mysql.connector.connect(
+    host="localhost",
+    port="3306",
+    user="root",
+    password="goodtime123",
+    database="member_system"
+    )
+    cursor = connection.cursor(dictionary=True)
     email=request.form["email"]
     password=request.form["password"]
     if email=="" or password=="":
         return redirect("/error?msg=請輸入帳號、密碼")
-    cursor.execute("SELECT `email` ,`password` FROM `member` WHERE `email`=%s AND `password`=%s",[email,password])
+    cursor.execute("SELECT `name` FROM `member` WHERE `email`=%s AND `password`=%s",[email,password])
     result=cursor.fetchone()
     if result==None:
         return redirect("/error?msg=帳號、或密碼輸入錯誤")
-    cursor.execute("SELECT `name` FROM `member` WHERE `email`=%s AND `password`=%s",result)
-    name=cursor.fetchone()
-    session["name"]=name[0]
+    session["name"]=result["name"]
     return redirect("/member")
 
 # 登出路由
