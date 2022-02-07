@@ -12,7 +12,7 @@ def member():
     if "name" in session:
         name=session["name"]
         if name=="":
-            name="DEAT"
+            name="DEAR"
         return render_template("member.html",name=name)
     else:
         return redirect("/")
