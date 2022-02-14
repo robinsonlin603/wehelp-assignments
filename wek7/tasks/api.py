@@ -35,17 +35,18 @@ class ResearchUser(Resource):
 
 class ChangeName(Resource):
     def post(self):
-        id = session["id"]
-        with connection_object.cursor(dictionary=True) as cursor:
-            content_type = request.headers.get('Content-Type')
-            if (content_type == 'application/json'):
-                newname = request.json["name"]
-                cursor.execute("UPDATE `member` SET `name`=%s WHERE `id`=%s",[newname,id])
-                connection_object.commit()
-                session["name"] = newname
-                return {"ok":True}
-            else:
-                return {"error":True}
+        try:
+            id = session["id"]
+            with connection_object.cursor(dictionary=True) as cursor:
+                content_type = request.headers.get('Content-Type')
+                if (content_type == 'application/json'):
+                    newname = request.json["name"]
+                    cursor.execute("UPDATE `member` SET `name`=%s WHERE `id`=%s",[newname,id])
+                    connection_object.commit()
+                    session["name"] = newname
+                    return {"ok":True}
+        except:
+            return {"error":True}  
 
 api.add_resource(ChangeName,"/api/member")
 api.add_resource(ResearchUser,"/api/members")
