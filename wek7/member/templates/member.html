@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>會員頁</title>
+    <link href="/style.css" rel="stylesheet" type="text/css" media="all" />
+</head>
+<body>
+    <div class="title">歡迎光臨，這是會員頁</div>
+    <div class="text">{{name}}，歡迎登入系統</div>
+    <div class="text"><a href="/signout">登出系統</a></div>
+    <div class="text">查詢會員姓名</div>
+    <form class="text">
+        <input type="text" id="name" />
+        <input type='button' value='查詢' onclick="searchName();"/>
+    </form>
+    <div id="result"></div>
+    <div class="text">更新我的名字</div>
+    <form class="text">
+        <input type="text" id="newname" placeholder="輸入新的名字" />
+        <input type="reset" value="更新" onclick="changeName();"/>
+    </form>
+    <div id="success"></div>
+    <script src="/style.js">
+    </script>
+</body>
+</html>
