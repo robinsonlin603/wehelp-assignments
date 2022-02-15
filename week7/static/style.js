@@ -14,7 +14,8 @@ async function web(url){
         result.setAttribute("class","text");
     }
     catch(error){
-        console.log("catch",error);
+        result.innerText = "查無此人";
+        result.setAttribute("class","text");
     }
 }
 function changeName(){
