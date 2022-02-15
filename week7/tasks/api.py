@@ -24,29 +24,27 @@ class ResearchUser(Resource):
     def get(self):
         with connection_object.cursor(dictionary=True) as cursor:
             username = request.args.get("username")
-            cursor.execute("SELECT `id`,`name`,`email` FROM `member` where email=%s",[username])
+            cursor.execute("SELECT `id`,`name`,`email` FROM `member` where email=%s",[username])                
             result = cursor.fetchone()
             if result !=None:
                 return {"data":result}
             else:
-                return {"data":{"name":"查無此人"}}
+                return {"data":None}
 
 # API 修改系統
 
 class ChangeName(Resource):
     def post(self):
-        try:
-            id = session["id"]
-            with connection_object.cursor(dictionary=True) as cursor:
-                content_type = request.headers.get('Content-Type')
-                if (content_type == 'application/json'):
-                    newname = request.json["name"]
-                    cursor.execute("UPDATE `member` SET `name`=%s WHERE `id`=%s",[newname,id])
-                    connection_object.commit()
-                    session["name"] = newname
-                    return {"ok":True}
-        except:
-            return {"error":True}             
+        with connection_object.cursor(dictionary=True) as cursor:
+            if "id" in session:
+                id = session["id"]
+                newname = request.json["name"]
+                cursor.execute("UPDATE `member` SET `name`=%s WHERE `id`=%s",[newname,id])
+                connection_object.commit()
+                session["name"] = newname
+                return {"ok":True}
+            else:
+                return {"error":True}             
 
 api.add_resource(ChangeName,"/api/member")
 api.add_resource(ResearchUser,"/api/members")
